@@ -15,18 +15,18 @@ public class test2 : MonoBehaviour
     private double[] slope = new double[10];//每一条线段的斜率
     private double[] y_axis = new double[10];//每一条线段的截距
 
-    private int Last_BusStop = 0;
-    private int current_bus_ori = 0;
-    private int last_bus_ori = 0; //朝着下园开
-    private int current_stop = 0;
+    private int Last_BusStop = 8;
+    private int current_bus_ori = 1;
+    private int last_bus_ori = 1; //朝着下园开
+    private int current_stop = 8;
     private float current_partition;
 
     private int[] bus_oritation = {1,1,1,1,1,1,1,1};
     private int total_route_step = 9;
     // private double[] simulate_GPS_x = { 114.207266f, 114.209234f, 114.209261f, 114.216622f, 114.217826f, 114.218024f, 114.217341f, 114.218131f, 114.21938f };
     // private double[] simulate_GPS_y = { 22.696781f, 22.69631f, 22.692097f, 22.691858f, 22.692925f, 22.693034f, 22.693813f, 22.695234f, 22.696576f };
-    private double[] simulate_GPS_x = { 114.207266f, 114.209234f, 114.211179f, 114.213703f, 114.21655f, 114.218006f, 114.218069f,  114.21938f };
-    private double[] simulate_GPS_y = { 22.696781f, 22.69631f, 22.691441f, 22.691116f, 22.691566f, 22.692767f, 22.694309f, 22.696576f };
+    private double[] simulate_GPS_x = { 114.221160f, 114.220223f, 114.218450f, 114.218028f, 114.217830f, 114.216625f, 114.2092641f, 114.209324f, 114.209230f, 114.207263f };
+    private double[] simulate_GPS_y = { 22.69503f, 22.694085f, 22.692740f, 22.693030f, 22.692929f, 22.691860f, 22.692096f, 22.693574f, 22.69630f, 22.696782f };
 
     void Start()
     {
