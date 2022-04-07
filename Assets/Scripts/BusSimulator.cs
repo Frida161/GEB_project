@@ -6,8 +6,8 @@ public struct BusInfo
 {
     public int busId;
     public int dir; //-1: Go upper; 1: Go lower
-    public  int line; //0 or 1
-    public  int status; //-1 means waiting in parking lot
+    public int line; //0 or 1
+    public int status; //-1 means waiting in parking lot
     public Vector2 location;
 
     public BusInfo(Bus bus)
@@ -23,7 +23,7 @@ public struct BusInfo
 
 public class BusSimulator : MonoBehaviour
 {
-    public static List<Vector2> Line1 = new List<Vector2> 
+    public static List<Vector2> Line1 = new List<Vector2>
     {
         new Vector2(114.207266f, 22.696781f), //教职工宿舍
         new Vector2(114.208618f, 22.697022f), //教职-书院拐点
@@ -65,7 +65,7 @@ public class BusSimulator : MonoBehaviour
         {"TB", 9},
     };
 
-    public static HashSet<int> Stops = new HashSet<int> { 0, 2, 4, 5, 8, 9};
+    public static HashSet<int> Stops = new HashSet<int> { 0, 2, 4, 5, 8, 9 };
     public static BusSimulator singleton;
 
     public GameObject BusPrefab;
@@ -75,8 +75,10 @@ public class BusSimulator : MonoBehaviour
     public Queue<Bus> ParkingLotTB;
     public Queue<Bus> ParkingLotLib;
 
-    public float time = 0;
-    public float UpperCooldown;
+    private int UpperLine = 0;
+    private float UpperCooldown = 0f;
+    private float LibCooldown = 60f;
+    private float TBCooldown = 0f;
 
     private void Awake()
     {
@@ -90,7 +92,7 @@ public class BusSimulator : MonoBehaviour
     private void Start()
     {
         //Init Upper
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < 1; i++)
         {
             Bus bus = Instantiate(BusPrefab).GetComponent<Bus>();
             bus.Initialize(Line1[0], i, 0, 1);
@@ -98,8 +100,47 @@ public class BusSimulator : MonoBehaviour
             ParkingLotUpper.Enqueue(bus);
         }
 
-        ParkingLotUpper.Dequeue().SetBus(0);
-        Debug.Log(Time.realtimeSinceStartup);
+        //Init TB
+        for (int i = 4; i < 6; i++)
+        {
+            Bus bus = Instantiate(BusPrefab).GetComponent<Bus>();
+            bus.Initialize(Line2[9], i, 1, -1);
+            BusList.Add(bus);
+            ParkingLotTB.Enqueue(bus);
+        }
+
+        //Init Lib
+        Bus b = Instantiate(BusPrefab).GetComponent<Bus>();
+        b.Initialize(Line1[9], 6, 0, -1);
+        BusList.Add(b);
+        ParkingLotLib.Enqueue(b);
+
+    }
+
+    private void Update()
+    {
+        UpperCooldown -= Time.deltaTime;
+        TBCooldown -= Time.deltaTime;
+        LibCooldown -= Time.deltaTime;
+
+        if (UpperCooldown <= 0f && ParkingLotUpper.Count > 0)
+        {
+            UpperCooldown = 60f;
+            ParkingLotUpper.Dequeue().SetBus(UpperLine);
+            UpperLine = (UpperLine == 0) ? 1 : 0;
+        }
+
+        if (TBCooldown <= 0f && ParkingLotTB.Count > 0)
+        {
+            TBCooldown = 120f;
+            ParkingLotTB.Dequeue().SetBus(1);
+        }
+
+        if (LibCooldown <= 0f && ParkingLotLib.Count > 0)
+        {
+            LibCooldown = 120f;
+            ParkingLotLib.Dequeue().SetBus(0);
+        }
     }
 
     public List<BusInfo> GetInfo()
@@ -112,8 +153,5 @@ public class BusSimulator : MonoBehaviour
         }
         return r;
     }
-
-
-
 
 }
