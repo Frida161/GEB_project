@@ -224,7 +224,8 @@ public class BusControl : MonoBehaviour
             double portion = (latitude[i] - cross_x) / (latitude[i] - latitude[i + 1]);
             float portion_convert = (float)(portion);
             float result = Mathf.Round(portion_convert * 100) / 100;//保留一位小数
-            if (result >= -0.1 && result <= 1.1) return pass_stop;
+            Debug.Log("pass:"+pass_stop);
+            if (result >= 0 && result <= 1) return pass_stop;
             else return limit_stop;
 
         }
