@@ -69,7 +69,8 @@ public class BusControl : MonoBehaviour
 
             //候车跳过
             if (status == -1) continue;
-
+            if (direction == 1) direction = 0;
+            else direction = 1;
             final_run_logic(location.x, location.y, direction, current_waiting_step, 0);
 
             //更新这个车的方向，用来显示
@@ -407,6 +408,10 @@ public class BusControl : MonoBehaviour
         int last_number = All_Last_BusStop[bus_number];
 
         All_Last_BusStop[bus_number] = line_number;
+        /*if (partition == 1 && bus_running_oir == 0)
+        {
+            All_Last_BusStop[bus_number] += 1;
+        }*/
         All_Last_bus_ori[bus_number] = bus_running_oir;
 
         //经过站点且不是拐点，更新座位
