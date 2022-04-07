@@ -12,9 +12,9 @@ public class BusControl : MonoBehaviour
     public GameObject[] Bus;
     public Text bus_info_text;
 
-    //顺序为教职工宿舍，教职工和书院的十字路口（ 114.208618f, 22.697022f,暂时取消），书院站，拐点，体育馆，启动区(缺少)，1,2号线分岔点，拐点3（到TB的拐点），TD，TB(目前一共9段)
-    private double[] latitude = { 114.207266f, 114.209234f, 114.209261f, 114.216622f, 114.217826f, 114.218024f, 114.218455f, 114.220224f, 114.221163f };//经纬度第一个值
-    private double[] longtitude = { 22.696781f, 22.69631f, 22.692097f, 22.691858f, 22.692925f, 22.693034f, 22.692742f, 22.694088f, 22.69508f };//经纬度第二个值
+    //顺序为教职工宿舍，教职工和书院的十字路口（ 114.208618f, 22.697022f,暂时取消），书院站，拐点，体育馆，启动区(缺少)，1,2号线分岔点，拐点3（到TB的拐点），学活，图书馆(目前一共9段)
+    private double[] latitude = { 114.207266f, 114.209234f, 114.209261f, 114.216622f, 114.217826f, 114.218024f, 114.218455f, 114.217341f, 114.218131f, };//经纬度第一个值
+    private double[] longtitude = { 22.696781f, 22.69631f, 22.692097f, 22.691858f, 22.692925f, 22.693034f, 22.692742f, 22.695234f, 22.696576f };//经纬度第二个值
     private double[] slope = new double[10];//每一条线段的斜率,
     private double[] y_axis = new double[10];//每一条线段的截距
 
@@ -224,7 +224,7 @@ public class BusControl : MonoBehaviour
             double portion = (latitude[i] - cross_x) / (latitude[i] - latitude[i + 1]);
             float portion_convert = (float)(portion);
             float result = Mathf.Round(portion_convert * 100) / 100;//保留一位小数
-            Debug.Log("pass:"+pass_stop);
+            Debug.Log("pass:"+result);
             if (result >= 0 && result <= 1) return pass_stop;
             else return limit_stop;
 
