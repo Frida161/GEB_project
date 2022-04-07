@@ -127,7 +127,7 @@ public class BusControl : MonoBehaviour
 
             //图书馆站只显示1号线
             if (current_waiting_step == 8 && All_bus_route_number[bus_number] == 2) continue;
-
+        //    if (current_waiting_step == 7 && All_bus_route_number[bus_number] == 1) continue;
 
             update_all_bus_info  += "LINE" + All_bus_route_number[bus_number].ToString();
             //朝着上园开
