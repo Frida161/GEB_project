@@ -11,8 +11,9 @@ public class line_test : MonoBehaviour
     // private double[] latitude = { 1, 2, 3 };//经纬度第一个值
     // private double[] longtitude = { 1, 2, 1 };//经纬度第二个值
 
-    private double[] latitude = { 114.207266f, 114.209234f, 114.209261f, 114.216622f, 114.217826f, 114.218024f, 114.217341f, 114.218131f, };//经纬度第一个值
-    private double[] longtitude = { 22.696781f, 22.69631f, 22.692097f, 22.691858f, 22.692925f, 22.693034f, 22.693813f, 22.695234f, 22.696576f};//经纬度第二个值
+
+    private double[] latitude = { 114.207266f, 114.209234f, 114.209261f, 114.216622f, 114.217826f, 114.218024f, 114.217341f, 114.218131f, 114.219380f, };//经纬度第一个值
+    private double[] longtitude = { 22.696781f, 22.69631f, 22.692097f, 22.691858f, 22.692925f, 22.693034f, 22.693813f, 22.695234f, 22.696576f };//经纬度第二个值
     private double[] slope = new double[10];//每一条线段的斜率,
     private double[] y_axis = new double[10];//每一条线段的截距
 

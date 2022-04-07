@@ -13,8 +13,8 @@ public class BusControl : MonoBehaviour
     public Text bus_info_text;
 
     //顺序为教职工宿舍，教职工和书院的十字路口（ 114.208618f, 22.697022f,暂时取消），书院站，拐点，体育馆，启动区(缺少)，1,2号线分岔点，拐点3（到TB的拐点），学活，图书馆(目前一共9段)
-    private double[] latitude = { 114.207266f, 114.209234f, 114.209261f, 114.216622f, 114.217826f, 114.218024f, 114.218455f, 114.217341f, 114.218131f, };//经纬度第一个值
-    private double[] longtitude = { 22.696781f, 22.69631f, 22.692097f, 22.691858f, 22.692925f, 22.693034f, 22.692742f, 22.695234f, 22.696576f };//经纬度第二个值
+    private double[] latitude = { 114.207266f, 114.209234f, 114.209261f, 114.216622f, 114.217826f, 114.218024f,114.217341f, 114.218131f, 114.219380f, };//经纬度第一个值
+    private double[] longtitude = { 22.696781f, 22.69631f, 22.692097f, 22.691858f, 22.692925f, 22.693034f, 22.693813f, 22.695234f, 22.696576f };//经纬度第二个值
     private double[] slope = new double[10];//每一条线段的斜率,
     private double[] y_axis = new double[10];//每一条线段的截距
 
@@ -82,61 +82,6 @@ public class BusControl : MonoBehaviour
         }
 
 
-    }
-
-    IEnumerator Func()
-    {
-        int start = simulate_GPS_x.Length - 1;
-        while (true)
-        {
-            yield return new WaitForSeconds(2.0f);
-            final_run_logic(simulate_GPS_x[start], simulate_GPS_y[start], 1, current_waiting_step,0);
-            final_run_logic(simulate_GPS_x[start], simulate_GPS_y[start], 1, current_waiting_step, 1);
-            //更新这个车的方向，用来显示
-            All_current_bus_oir[0] = 1;
-            All_current_bus_oir[1] = 1;
-            //更新总榜ui然后字典清空
-            update_all_UI();
-            bus_time_dic.Clear();
-
-            start = start - 1;
-            //if (start > simulate_GPS_x.Length-1) break;
-            if (start < 0)
-            {
-                start = simulate_GPS_x.Length - 1;
-                StartCoroutine(Func2());
-                break;
-            }
-        }
-
-
-    }
-
-
-    IEnumerator Func2()
-    {
-        int start = 0;
-        while (true)
-        {
-            yield return new WaitForSeconds(2.0f);
-            final_run_logic(simulate_GPS_x[start], simulate_GPS_y[start], 0, current_waiting_step,0);
-            final_run_logic(simulate_GPS_x[start], simulate_GPS_y[start], 0, current_waiting_step, 1);
-            //更新这个车的方向，用来显示
-            All_current_bus_oir[0] = 0;
-            All_current_bus_oir[1] = 1;
-            //更新总榜ui然后字典清空
-            update_all_UI();
-            bus_time_dic.Clear();
-
-            start = start + 1;
-            if (start > simulate_GPS_x.Length - 1)
-            {
-                start = 0;
-                StartCoroutine(Func());
-                break;
-            }
-            //if (start > simulate_GPS_x.Length-1) break;
-        }
     }
     #endregion
 
@@ -217,6 +162,16 @@ public class BusControl : MonoBehaviour
 
             //计算是否在该路径上
             int i = pass_stop;
+            if (x == latitude[pass_stop])
+            {
+                return pass_stop;
+            }
+            //两条线完全平行，一般不太可能
+            if (slope[pass_stop] == 0)
+            {
+                return pass_stop;
+            }
+            Debug.Log(x.ToString() +" " + y.ToString());
             double distance = (slope[i] * x - y + y_axis[i]) * (slope[i] * x - y + y_axis[i]) / (slope[i] * slope[i] + 1);
             double point_line_slope = -1 / slope[i];
             double b = -point_line_slope * x + y;
