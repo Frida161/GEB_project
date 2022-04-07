@@ -1,14 +1,10 @@
 ﻿<Properties StartupConfiguration="{C3D4F516-4D05-40AF-E348-70AD50CAACCA}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/test_script/Useless/LINE_2.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/change_station.cs">
     <Files>
-      <File FileName="Assets/Scripts/LINE_1.cs" Line="8" Column="157" />
-      <File FileName="Assets/Scripts/LINE_2_2.cs" Line="11" Column="1" />
-      <File FileName="Assets/test_script/test.cs" Line="14" Column="57" />
-      <File FileName="Assets/test_script/test2.cs" Line="20" Column="33" />
-      <File FileName="Assets/Scripts/LINE_2.cs" Line="36" Column="161" />
-      <File FileName="Assets/test_script/line_test.cs" Line="23" Column="38" />
-      <File FileName="Assets/Scripts/line_test2.cs" Line="6" Column="24" />
-      <File FileName="Assets/test_script/Useless/LINE_2.cs" Line="9" Column="149" />
+      <File FileName="Assets/Scripts/line_test2.cs" Line="171" Column="1" />
+      <File FileName="Assets/Scripts/BusControl.cs" Line="83" Column="101" />
+      <File FileName="Assets/Scripts/line_test.cs" Line="180" Column="1" />
+      <File FileName="Assets/Scripts/change_station.cs" Line="8" Column="24" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

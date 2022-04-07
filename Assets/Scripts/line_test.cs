@@ -33,8 +33,8 @@ public class line_test : MonoBehaviour
 
     void Start()
     {
-        calculate_slope_and_y_axis();
-        StartCoroutine(Func());
+       // calculate_slope_and_y_axis();
+       // StartCoroutine(Func());
     }
 
 
@@ -168,6 +168,15 @@ public class line_test : MonoBehaviour
 
 
     #region 图上公交的移动
+    public void Bus_move(float[] info)
+    {
+        int line_number = (int)info[0];
+        float portion = info[1];
+        float target_x = map_stop[line_number].position.x + (map_stop[line_number + 1].position.x - map_stop[line_number].position.x) * portion;
+        float target_y = map_stop[line_number].position.y + (map_stop[line_number + 1].position.y - map_stop[line_number].position.y) * portion;
+        Vector3 target_Postion = new Vector3(target_x, target_y, 0f);
+        gameObject.transform.position = target_Postion;
+    }
 
     private void final_move(int line_number, float portion)
     {
@@ -339,5 +348,22 @@ public class line_test : MonoBehaviour
 
     }
 
+    //由Buscontrol脚本控制，更新座位UI
+    public void update_seat_ui(int seat)
+    {
+        seat_number_text.text = seat.ToString();
+    }
 
+    //由Buscontrol脚本控制，更新等待时间ui
+    public void update_waiting_time_ui(int time)
+    {
+        if (time == 0)
+        {
+            waiting_time_text.text = "< 1";
+        }
+        else
+        {
+            waiting_time_text.text = time.ToString();
+        }
+    }
 }

@@ -33,8 +33,8 @@ public class line_test2 : MonoBehaviour
 
     void Start()
     {
-        calculate_slope_and_y_axis();
-        StartCoroutine(Func());
+       // calculate_slope_and_y_axis();
+        //StartCoroutine(Func());
     }
 
 
@@ -119,7 +119,6 @@ public class line_test2 : MonoBehaviour
             double portion = (latitude[i] - cross_x) / (latitude[i] - latitude[i + 1]);
             float portion_convert = (float)(portion);
             float result = Mathf.Round(portion_convert * 100) / 100;//保留一位小数
-            Debug.Log("result:" + result);
             if (result >= 0 && result <= 1) return pass_stop;
             else return limit_stop;
 
@@ -161,6 +160,7 @@ public class line_test2 : MonoBehaviour
         float portion_convert = (float)(portion);
         float result = Mathf.Round(portion_convert * 100) / 100;//保留两位小数
         if (result >= 1) return 1;
+        if (result <= 0) return 0;
         return result;
     }
 
@@ -168,6 +168,15 @@ public class line_test2 : MonoBehaviour
 
 
     #region 图上公交的移动
+    public void Bus_move(float[] info)
+    {
+        int line_number = (int)info[0];
+        float portion = info[1];
+        float target_x = map_stop[line_number].position.x + (map_stop[line_number + 1].position.x - map_stop[line_number].position.x) * portion;
+        float target_y = map_stop[line_number].position.y + (map_stop[line_number + 1].position.y - map_stop[line_number].position.y) * portion;
+        Vector3 target_Postion = new Vector3(target_x, target_y, 0f);
+        gameObject.transform.position = target_Postion;
+    }
 
     private void final_move(int line_number, float portion)
     {
@@ -254,7 +263,6 @@ public class line_test2 : MonoBehaviour
                 {
                     total_waiting_time += line_running_time[i];
                 }
-                Debug.Log("total_waiting" + total_waiting_time);
                 //总时长经过已经走过的距离
                 total_waiting_time = single_route_time * 2 - (Mathf.Round(total_waiting_time*10)/10);
                 return total_waiting_time;
@@ -262,7 +270,6 @@ public class line_test2 : MonoBehaviour
             //下一站没到，还远着
             else
             {
-                Debug.Log("total_waiting?" + total_waiting_time);
                 // Debug.Log("hi5:" + current_step_number + " " + line_number + " " + partition);
                 total_waiting_time = 0f;
                 if (line_number != 8)
@@ -317,7 +324,7 @@ public class line_test2 : MonoBehaviour
        /* if (partition > 0.9 && bus_running_oir == 0) Last_BusStop = line_number +1;
         else if (partition < 0.1 && bus_running_oir == 1)Last_BusStop = line_number - 1;*/
         //else
-            Last_BusStop = line_number;
+        Last_BusStop = line_number;
         last_bus_ori = bus_running_oir;
 
         //经过站点且不是拐点，更新座位
@@ -339,5 +346,80 @@ public class line_test2 : MonoBehaviour
 
     }
 
+
+    public void RUN(double x, double y, int bus_running_oir, int current_student_wait_step)
+    {
+        int line_number;
+        if (last_bus_ori == bus_running_oir && last_bus_ori == 0)
+        {
+            line_number = calculate_min_distance(x, y, 0, Last_BusStop);
+        }
+        else if (last_bus_ori == bus_running_oir && last_bus_ori == 1)
+        {
+            line_number = calculate_min_distance(x, y, 1, Last_BusStop);
+        }
+        //转向上园，在图书馆附近
+        else if (last_bus_ori != bus_running_oir && bus_running_oir == 1)
+        {
+            line_number = calculate_min_distance(x, y, 2, Last_BusStop);
+        }
+        //转向下园，在教职工宿舍附近
+        else
+        {
+            line_number = calculate_min_distance(x, y, 3, Last_BusStop);
+        }
+        float partition = calculate_partition(x, y, line_number);
+        //Debug.Log("line_number:" + line_number);
+        //Debug.Log("partition:" + partition);
+        final_move(line_number, partition);
+        //向下园开
+        int last_number = Last_BusStop;
+
+        /* if (partition > 0.9 && bus_running_oir == 0) Last_BusStop = line_number +1;
+         else if (partition < 0.1 && bus_running_oir == 1)Last_BusStop = line_number - 1;*/
+        //else
+        Last_BusStop = line_number;
+        last_bus_ori = bus_running_oir;
+
+        //经过站点且不是拐点，更新座位
+        if (last_number != Last_BusStop && last_number != 2 && last_number != 5 && last_number != 6)
+        {
+            seat_number_text.text = random_remain_seat().ToString();
+        }
+
+        //更新等待时间
+        float bus_waiting_time = calculate_waiting_time(current_student_wait_step, line_number, partition, bus_running_oir);
+        if (bus_waiting_time == 0)
+        {
+            waiting_time_text.text = "< 1";
+        }
+        else
+        {
+            waiting_time_text.text = bus_waiting_time.ToString();
+        }
+
+    }
+
+
+
+
+    //由Buscontrol脚本控制，更新座位UI
+    public void update_seat_ui(int seat)
+    {
+        seat_number_text.text = seat.ToString();
+    }
+
+    //由Buscontrol脚本控制，更新等待时间ui
+    public void update_waiting_time_ui(int time)
+    {
+        if (time == 0)
+        {
+            waiting_time_text.text = "< 1";
+        }
+        else
+        {
+            waiting_time_text.text = time.ToString();
+        }
+    }
 
 }

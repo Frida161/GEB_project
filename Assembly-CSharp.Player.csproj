@@ -80,182 +80,185 @@
     <Reference Include="Unity.TextMeshPro">
       <HintPath>Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/mono/Managed/UnityEngine.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.AIModule">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/mono/Managed/UnityEngine.AIModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.ARModule">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.ARModule.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/mono/Managed/UnityEngine.ARModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AccessibilityModule">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.AccessibilityModule.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/mono/Managed/UnityEngine.AccessibilityModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AndroidJNIModule">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.AndroidJNIModule.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/mono/Managed/UnityEngine.AndroidJNIModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AnimationModule">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.AnimationModule.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/mono/Managed/UnityEngine.AnimationModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AssetBundleModule">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.AssetBundleModule.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/mono/Managed/UnityEngine.AssetBundleModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AudioModule">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.AudioModule.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/mono/Managed/UnityEngine.AudioModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.ClothModule">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.ClothModule.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/mono/Managed/UnityEngine.ClothModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.ClusterInputModule">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.ClusterInputModule.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/mono/Managed/UnityEngine.ClusterInputModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.ClusterRendererModule">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.ClusterRendererModule.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/mono/Managed/UnityEngine.ClusterRendererModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.CoreModule.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/mono/Managed/UnityEngine.CoreModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.CrashReportingModule">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.CrashReportingModule.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/mono/Managed/UnityEngine.CrashReportingModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.DSPGraphModule">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.DSPGraphModule.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/mono/Managed/UnityEngine.DSPGraphModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.DirectorModule">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.DirectorModule.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/mono/Managed/UnityEngine.DirectorModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.GameCenterModule">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.GameCenterModule.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/mono/Managed/UnityEngine.GameCenterModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.GridModule">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.GridModule.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/mono/Managed/UnityEngine.GridModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.HotReloadModule">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.HotReloadModule.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/mono/Managed/UnityEngine.HotReloadModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.IMGUIModule">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.IMGUIModule.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/mono/Managed/UnityEngine.IMGUIModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.ImageConversionModule">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.ImageConversionModule.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/mono/Managed/UnityEngine.ImageConversionModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.InputModule">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.InputModule.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/mono/Managed/UnityEngine.InputModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.InputLegacyModule">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.InputLegacyModule.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/mono/Managed/UnityEngine.InputLegacyModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.JSONSerializeModule">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.JSONSerializeModule.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/mono/Managed/UnityEngine.JSONSerializeModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.LocalizationModule">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.LocalizationModule.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/mono/Managed/UnityEngine.LocalizationModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.ParticleSystemModule">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.ParticleSystemModule.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/mono/Managed/UnityEngine.ParticleSystemModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.PerformanceReportingModule">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.PerformanceReportingModule.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/mono/Managed/UnityEngine.PerformanceReportingModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.PhysicsModule">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.PhysicsModule.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/mono/Managed/UnityEngine.PhysicsModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Physics2DModule">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.Physics2DModule.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/mono/Managed/UnityEngine.Physics2DModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.ProfilerModule">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.ProfilerModule.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/mono/Managed/UnityEngine.ProfilerModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.ScreenCaptureModule">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.ScreenCaptureModule.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/mono/Managed/UnityEngine.ScreenCaptureModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.SharedInternalsModule">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.SharedInternalsModule.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/mono/Managed/UnityEngine.SharedInternalsModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.SpriteMaskModule">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.SpriteMaskModule.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/mono/Managed/UnityEngine.SpriteMaskModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.SpriteShapeModule">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.SpriteShapeModule.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/mono/Managed/UnityEngine.SpriteShapeModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.StreamingModule">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.StreamingModule.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/mono/Managed/UnityEngine.StreamingModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.SubstanceModule">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.SubstanceModule.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/mono/Managed/UnityEngine.SubstanceModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.SubsystemsModule">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.SubsystemsModule.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/mono/Managed/UnityEngine.SubsystemsModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.TLSModule">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.TLSModule.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/mono/Managed/UnityEngine.TLSModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.TerrainModule">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.TerrainModule.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/mono/Managed/UnityEngine.TerrainModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.TerrainPhysicsModule">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.TerrainPhysicsModule.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/mono/Managed/UnityEngine.TerrainPhysicsModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.TextCoreModule">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.TextCoreModule.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/mono/Managed/UnityEngine.TextCoreModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.TextRenderingModule">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.TextRenderingModule.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/mono/Managed/UnityEngine.TextRenderingModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.TilemapModule">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.TilemapModule.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/mono/Managed/UnityEngine.TilemapModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UIModule">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.UIModule.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/mono/Managed/UnityEngine.UIModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UIElementsModule">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.UIElementsModule.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/mono/Managed/UnityEngine.UIElementsModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UNETModule">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.UNETModule.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/mono/Managed/UnityEngine.UNETModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UmbraModule">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.UmbraModule.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/mono/Managed/UnityEngine.UmbraModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UnityAnalyticsModule">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.UnityAnalyticsModule.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/mono/Managed/UnityEngine.UnityAnalyticsModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UnityConnectModule">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.UnityConnectModule.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/mono/Managed/UnityEngine.UnityConnectModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UnityTestProtocolModule">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.UnityTestProtocolModule.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/mono/Managed/UnityEngine.UnityTestProtocolModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UnityWebRequestModule">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.UnityWebRequestModule.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/mono/Managed/UnityEngine.UnityWebRequestModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/mono/Managed/UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UnityWebRequestAudioModule">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/mono/Managed/UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UnityWebRequestTextureModule">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/mono/Managed/UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UnityWebRequestWWWModule">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/mono/Managed/UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.VFXModule">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.VFXModule.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/mono/Managed/UnityEngine.VFXModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.VRModule">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.VRModule.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/mono/Managed/UnityEngine.VRModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.VehiclesModule">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.VehiclesModule.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/mono/Managed/UnityEngine.VehiclesModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.VideoModule">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.VideoModule.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/mono/Managed/UnityEngine.VideoModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.WindModule">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.WindModule.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/mono/Managed/UnityEngine.WindModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.XRModule">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.XRModule.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/mono/Managed/UnityEngine.XRModule.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
@@ -640,9 +643,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\BusControl.cs" />
+    <Compile Include="Assets\Scripts\change_station.cs" />
     <Compile Include="Assets\Scripts\line_test.cs" />
     <Compile Include="Assets\Scripts\line_test2.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
+    <Compile Include="Assets\test_script\PitchZoom.cs" />
     <Compile Include="Assets\test_script\Useless\LINE_1.cs" />
     <Compile Include="Assets\test_script\Useless\LINE_1_2.cs" />
     <Compile Include="Assets\test_script\Useless\LINE_2.cs" />
