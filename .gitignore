@@ -11,7 +11,7 @@
 /[Mm]emoryCaptures/
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
-!/[Aa]ssets/**/*.meta
+#!/[Aa]ssets/**/*.meta
 
 # Uncomment this line if you wish to ignore the asset store tools plugin
 # /[Aa]ssets/AssetStoreTools*
@@ -58,13 +58,3 @@ sysinfo.txt
 
 # Crashlytics generated file
 crashlytics-build.properties
-
-mtv1.0_clone_0
-
-/mtv1.0 - 副本-添加了宠物UI的本地版本
-*.meta
-mtv1.0/Assets/Scripts/CostumeSys.meta
-mtv1.0/Assets/Scripts/CostumeSys.meta
-*.csproj
-*.csproj
-*.sln
