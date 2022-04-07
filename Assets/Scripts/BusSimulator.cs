@@ -7,6 +7,7 @@ public struct BusInfo
     int busId;
     int dir; //-1: Go upper; 1: Go lower
     int line; //0 or 1
+    int status; //-1 means waiting in parking lot
     Vector2 location;
 
     public BusInfo(Bus bus)
@@ -14,6 +15,7 @@ public struct BusInfo
         busId = bus.ID;
         dir = bus.dir;
         line = bus.line;
+        status = bus.status;
         location = bus.location;
     }
 }
@@ -74,6 +76,7 @@ public class BusSimulator : MonoBehaviour
     public Queue<Bus> ParkingLotLib;
 
     public float time = 0;
+    public float UpperCooldown;
 
     private void Awake()
     {
@@ -86,7 +89,8 @@ public class BusSimulator : MonoBehaviour
 
     private void Start()
     {
-        for (int i = 0; i < 1; i++)
+        //Init Upper
+        for (int i = 0; i < 4; i++)
         {
             Bus bus = Instantiate(BusPrefab).GetComponent<Bus>();
             bus.Initialize(Line1[0], i, 0, 1);
