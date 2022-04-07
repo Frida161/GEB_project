@@ -175,7 +175,7 @@ public class line_test2 : MonoBehaviour
         float target_x = map_stop[line_number].position.x + (map_stop[line_number + 1].position.x - map_stop[line_number].position.x) * portion;
         float target_y = map_stop[line_number].position.y + (map_stop[line_number + 1].position.y - map_stop[line_number].position.y) * portion;
         Vector3 target_Postion = new Vector3(target_x, target_y, 0f);
-        gameObject.transform.position = target_Postion;
+        gameObject.transform.localPosition = target_Postion;
     }
 
     private void final_move(int line_number, float portion)
