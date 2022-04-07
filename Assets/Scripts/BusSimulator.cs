@@ -92,7 +92,7 @@ public class BusSimulator : MonoBehaviour
     private void Start()
     {
         //Init Upper
-        for (int i = 0; i < 1; i++)
+        for (int i = 0; i < 4; i++)
         {
             Bus bus = Instantiate(BusPrefab).GetComponent<Bus>();
             bus.Initialize(Line1[0], i, 0, 1);
