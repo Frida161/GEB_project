@@ -204,10 +204,10 @@ public class BusControl : MonoBehaviour
     {
         if (direction == 0 || direction == 1)
         {
-            int limit_stop = latitude.Length - 1;
+            int limit_stop = latitude.Length - 2;
             if (direction == 0)//往下园开
             {
-                if ((pass_stop + 1) <= latitude.Length - 1) limit_stop = pass_stop + 1;
+                if ((pass_stop + 1) <= latitude.Length - 2) limit_stop = pass_stop + 1;
             }
             else //往上园开
             {
