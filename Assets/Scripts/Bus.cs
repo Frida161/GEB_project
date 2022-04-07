@@ -31,7 +31,7 @@ public class Bus : MonoBehaviour
         {
             status += dir;
             location = BusSimulator.Lines[line][status];
-            Debug.Log("Arrive at " + status.ToString());
+            Debug.Log("Bus " + ID.ToString() + " Arrive at " + status.ToString());
             Debug.Log(Time.realtimeSinceStartup);
             if (status == 0 || status == 9)
             {
@@ -66,7 +66,7 @@ public class Bus : MonoBehaviour
     {
         if (status == 0)
         {
-            Debug.Log("Arrive at parking lot upper campus");
+            Debug.Log("Bus " + ID.ToString() + "Arrive at parking lot upper campus");
             BusSimulator.singleton.ParkingLotUpper.Enqueue(this);
             dir = 1;
         }
@@ -75,12 +75,12 @@ public class Bus : MonoBehaviour
             dir = -1;
             if (line == 0)
             {
-                Debug.Log("Arrive at parking lot libary");
+                Debug.Log("Bus " + ID.ToString() + "Arrive at parking lot libary");
                 BusSimulator.singleton.ParkingLotLib.Enqueue(this);
             }
             else
             {
-                Debug.Log("Arrive at parking lot TB");
+                Debug.Log("Bus " + ID.ToString() + "Arrive at parking lot TB");
                 BusSimulator.singleton.ParkingLotTB.Enqueue(this);
             }
         }
