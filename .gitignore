@@ -65,3 +65,6 @@ mtv1.0_clone_0
 *.meta
 mtv1.0/Assets/Scripts/CostumeSys.meta
 mtv1.0/Assets/Scripts/CostumeSys.meta
+*.csproj
+*.csproj
+*.sln
