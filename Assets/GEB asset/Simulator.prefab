@@ -40,10 +40,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7279526524611614245}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5ae996c8b62810498f03c3add96d3a9, type: 3}
+  m_Script: {fileID: 11500000, guid: 252a504faa0564a25962624a89f7aaef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BusPrefab: {fileID: 4764113391316300200, guid: 2f1f2965d439b054a9fcf94db095aeb7,
+  BusPrefab: {fileID: 4764113391316300200, guid: 4640e35819b464cbc8678e7d3925ba10,
     type: 3}
   BusList: []
   time: 0

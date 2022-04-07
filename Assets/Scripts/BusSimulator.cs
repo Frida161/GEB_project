@@ -4,11 +4,11 @@ using UnityEngine;
 
 public struct BusInfo
 {
-    int busId;
-    int dir; //-1: Go upper; 1: Go lower
-    int line; //0 or 1
-    int status; //-1 means waiting in parking lot
-    Vector2 location;
+    public int busId;
+    public int dir; //-1: Go upper; 1: Go lower
+    public  int line; //0 or 1
+    public  int status; //-1 means waiting in parking lot
+    public Vector2 location;
 
     public BusInfo(Bus bus)
     {

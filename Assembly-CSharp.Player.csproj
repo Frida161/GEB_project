@@ -643,7 +643,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Bus.cs" />
     <Compile Include="Assets\Scripts\BusControl.cs" />
+    <Compile Include="Assets\Scripts\BusSimulator.cs" />
     <Compile Include="Assets\Scripts\change_station.cs" />
     <Compile Include="Assets\Scripts\line_test.cs" />
     <Compile Include="Assets\Scripts\line_test2.cs" />

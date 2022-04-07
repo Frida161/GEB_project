@@ -18,7 +18,7 @@ public class BusControl : MonoBehaviour
     private double[] slope = new double[10];//每一条线段的斜率,
     private double[] y_axis = new double[10];//每一条线段的截距
 
-    private float[] line_running_time = { 1f, 2f, 2.5f, 1f, 0.5f, 0.5f, 0.5f, 1f };//每一段路程的行驶时间,例如教职工宿舍和书院行驶时间为1min,单程9分钟
+    private float[] line_running_time = { 1f, 2f, 3.5f, 1f, 0.5f, 0.5f, 0.5f, 1f };//每一段路程的行驶时间,例如教职工宿舍和书院行驶时间为1min,单程9分钟
     private float single_route_time = 9f;
 
     //记录每一辆车的上一站
@@ -27,7 +27,7 @@ public class BusControl : MonoBehaviour
     private int[] All_Last_BusStop = {0,0,0,0};
     private int[] All_Last_bus_ori = {0,0,0,0};
     private int current_waiting_step = 1;//当前人所在的车站
-    private int[] All_bus_route_number = {2,1,2}; //1->1号线，2->2号线
+    private int[] All_bus_route_number = {1,1,2}; //1->1号线，2->2号线
 
     private double[] simulate_GPS_x = { 114.207361f, 114.207835f, 114.208159f, 114.208693f, 114.209093f, 114.209354f, 114.209538f, 114.2209695f, 114.210027f, 114.210346f, 114.209556f, 114.213132f, 114.214363f, 114.215553f, 114.216757f, 114.21753f, 114.217633f, 114.218024f, 114.217808f, 114.218284f, };
     private double[] simulate_GPS_y = { 22.69648f, 22.696401f, 22.696553f, 22.69683f, 22.696851f, 22.696626f, 22.69633f, 22.696042f, 22.695542f, 22.694955f, 22.694275, 22.691058f, 22.691333f, 22.691179f, 22.691675f, 22.692087f, 22.692637f, 22.693392f, 22.694f, 22.69483f };
@@ -37,10 +37,11 @@ public class BusControl : MonoBehaviour
     private int[] All_current_bus_oir = { 0,0,0,0,0,0,0,0,0};
 
     Dictionary<int, float> bus_time_dic = new Dictionary<int, float>();
+
     void Start()
     {
         calculate_slope_and_y_axis();
-        StartCoroutine(Func());
+        StartCoroutine(test());
     }
 
     public void change_current_station(int number)
@@ -49,6 +50,39 @@ public class BusControl : MonoBehaviour
     }
 
     #region 模拟运行（待删除）
+
+
+    IEnumerator test()
+    {
+        int start = simulate_GPS_x.Length - 1;
+        while (true)
+        {
+            yield return new WaitForSeconds(0.1f);
+            //bus id 暂时没用
+
+            BusInfo bus_info = BusSimulator.singleton.GetInfo()[0];
+            int bus_id = bus_info.busId;
+            int direction = bus_info.dir;
+            int line = bus_info.line;
+            int status = bus_info.status;
+            Vector2 location = bus_info.location;
+
+            //候车跳过
+            if (status == -1) continue;
+
+            final_run_logic(location.x, location.y, direction, current_waiting_step, 0);
+
+            //更新这个车的方向，用来显示
+            All_current_bus_oir[0] = direction;
+
+            //更新总榜ui然后字典清空
+            update_all_UI();
+            bus_time_dic.Clear();
+        }
+
+
+    }
+
     IEnumerator Func()
     {
         int start = simulate_GPS_x.Length - 1;
@@ -362,7 +396,7 @@ public class BusControl : MonoBehaviour
             line_number = calculate_min_distance(x, y, 3, All_Last_BusStop[bus_number]);
         }
         float partition = calculate_partition(x, y, line_number);
-
+        Debug.Log("p:"+line_number.ToString()+partition);
      //   Debug.Log("info:"+line_number.ToString()+ "  "+partition);
 
         //改成调用相应车的运动脚本
