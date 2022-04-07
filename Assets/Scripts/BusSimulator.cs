@@ -95,6 +95,7 @@ public class BusSimulator : MonoBehaviour
         }
 
         ParkingLotUpper.Dequeue().SetBus(0);
+        Debug.Log(Time.realtimeSinceStartup);
     }
 
     public List<BusInfo> GetInfo()

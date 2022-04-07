@@ -8,10 +8,11 @@ public class Bus : MonoBehaviour
     public Vector2 location;
     public Vector2 forward;
     public Vector2 target;
+    public float targetMag;
     public int ID;
     public int line;
     public int dir;
-    public float speed = 10f;
+    public float speed;
     public int status = -1;
     public float waiting = 0;
 
@@ -26,20 +27,22 @@ public class Bus : MonoBehaviour
         }
 
         //Check if at any bus stops
-        if ((location-target).magnitude < 0.00001f)
+        if ((location- BusSimulator.Lines[line][status]).magnitude >= targetMag)
         {
-            location = BusSimulator.Lines[line][status];
             status += dir;
+            location = BusSimulator.Lines[line][status];
+            Debug.Log("Arrive at " + status.ToString());
+            Debug.Log(Time.realtimeSinceStartup);
             if (status == 0 || status == 9)
             {
                 Arrived();
             }
             else if(BusSimulator.Stops.Contains(status))
             {
-                waiting = 1f;
+                waiting = 10f;
                 target = BusSimulator.Lines[line][status + dir];
+                targetMag = (target - BusSimulator.Lines[line][status]).magnitude;
                 forward = (target - location).normalized;
-                Debug.Log("Arrive at " + status.ToString());
             }
             
         }
@@ -47,7 +50,6 @@ public class Bus : MonoBehaviour
         {
             location += forward * speed * Time.deltaTime;
             //Debug.Log("Current postion: " + location.ToString());
-            Debug.Log(speed * Time.deltaTime);
         }
         
     }
@@ -92,12 +94,14 @@ public class Bus : MonoBehaviour
         {
             status = 0;
             target = BusSimulator.Lines[l][1];
+            targetMag = (target - BusSimulator.Lines[l][status]).magnitude;
             forward = (target - location).normalized;
         }
         else
         {
             status = 9;
             target = BusSimulator.Lines[l][8];
+            targetMag = (target - BusSimulator.Lines[l][status]).magnitude;
             forward = (target - location).normalized;
         }
     }
