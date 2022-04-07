@@ -336,7 +336,7 @@ public class BusControl : MonoBehaviour
                 total_waiting_time = (1 - partition) * line_running_time[line_number];
                 for (int i = current_step_number; i < latitude.Length - 2; i++)
                 {
-                    Debug.Log(i);
+                  //  Debug.Log(i);
                     total_waiting_time += line_running_time[i];
                 }
                 for (int i = line_number + 1; i < latitude.Length - 2; i++)
