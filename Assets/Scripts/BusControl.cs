@@ -76,7 +76,7 @@ public class BusControl : MonoBehaviour
             int direction = bus_info.dir;
             int line = bus_info.line + 1;
             int status = bus_info.status;
-            Vector2 location = bus_info.location;
+            Vector2d location = bus_info.location;
             if (direction == 1) direction = 0;
             else direction = 1;
 
@@ -120,7 +120,7 @@ public class BusControl : MonoBehaviour
             int direction = bus_info.dir;
             int line = bus_info.line;
             int status = bus_info.status;
-            Vector2 location = bus_info.location;
+            Vector2d location = bus_info.location;
 
             //候车跳过
             if (status == -1) continue;
@@ -132,7 +132,7 @@ public class BusControl : MonoBehaviour
                 int bus_id = bus_info.busId;
                 int direction = bus_info.dir;
                 int status = bus_info.status;
-                Vector2 location = bus_info.location;
+                Vector2d location = bus_info.location;
 
                 if (direction == 1) direction = 0;
                 else direction = 1;

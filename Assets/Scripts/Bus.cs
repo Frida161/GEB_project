@@ -5,16 +5,16 @@ using UnityEngine;
 public class Bus : MonoBehaviour
 {
 
-    public Vector2 location;
-    public Vector2 forward;
-    public Vector2 target;
-    public float targetMag;
+    public Vector2d location;
+    public Vector2d forward;
+    public Vector2d target;
+    public double targetMag;
     public int ID;
     public int line;
     public int dir;
-    public float speed;
+    public double speed;
     public int status = -1;
-    public float waiting = 0;
+    public double waiting = 0;
 
 
     private void FixedUpdate()
@@ -31,30 +31,32 @@ public class Bus : MonoBehaviour
         {
             status += dir;
             location = BusSimulator.Lines[line][status];
-            Debug.Log("Bus " + ID.ToString() + " Arrive at " + status.ToString());
             Debug.Log(Time.realtimeSinceStartup);
+            Debug.Log("Bus " + ID.ToString() + " Arrive at " + status.ToString());
             if (status == 0 || status == 9)
             {
                 Arrived();
+                return;
             }
             else if(BusSimulator.Stops.Contains(status))
             {
                 waiting = 10f;
-                target = BusSimulator.Lines[line][status + dir];
-                targetMag = (target - BusSimulator.Lines[line][status]).magnitude;
-                forward = (target - location).normalized;
             }
-            
+            target = BusSimulator.Lines[line][status + dir];
+            targetMag = (target - BusSimulator.Lines[line][status]).magnitude;
+            forward = (target - location).normalized;
+
+            if (status == 2 || status == 3) speed = 0.0003;
+            else speed = 0.0002;
         }
         else
         {
             location += forward * speed * Time.deltaTime;
-            //Debug.Log("Current postion: " + location.ToString());
         }
         
     }
 
-    public void Initialize(Vector2 loc, int id, int l, int d)
+    public void Initialize(Vector2d loc, int id, int l, int d)
     {
         location = loc;
         ID = id;
