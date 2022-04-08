@@ -391,7 +391,7 @@ public class line_test2 : MonoBehaviour
         float bus_waiting_time = calculate_waiting_time(current_student_wait_step, line_number, partition, bus_running_oir);
         if (bus_waiting_time == 0)
         {
-            waiting_time_text.text = "< 1";
+            waiting_time_text.text = "0";
         }
         else
         {
@@ -410,16 +410,16 @@ public class line_test2 : MonoBehaviour
     }
 
     //由Buscontrol脚本控制，更新等待时间ui
-    public void update_waiting_time_ui(int time)
+    public void update_waiting_time_ui(float time)
     {
-        if (time == 0)
+        /*if (time == 0)
         {
             waiting_time_text.text = "< 1";
         }
         else
-        {
+        {*/
             waiting_time_text.text = time.ToString();
-        }
+       // }
     }
 
 }

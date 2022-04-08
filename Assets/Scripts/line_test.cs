@@ -18,7 +18,7 @@ public class line_test : MonoBehaviour
     private double[] y_axis = new double[10];//每一条线段的截距
 
     private float[] line_running_time = { 1f, 2f, 2.5f, 1f, 0.5f, 0.5f, 0.5f, 1f };//每一段路程的行驶时间,例如教职工宿舍和书院行驶时间为1min,单程9分钟
-    private float single_route_time = 9f;
+    private float single_route_time = 10f;
 
     //在上园的停车场的车，初始值为 Last_BusStop = 0， last_bus_ori = 0
     //在下园的停车场的车，初始值为 Last_BusStop = 6， last_bus_ori = 1
@@ -340,7 +340,7 @@ public class line_test : MonoBehaviour
         float bus_waiting_time = calculate_waiting_time(current_student_wait_step, line_number, partition, bus_running_oir);
         if (bus_waiting_time == 0)
         {
-            waiting_time_text.text = "< 1";
+            waiting_time_text.text = "0";
         }
         else
         {
@@ -356,15 +356,15 @@ public class line_test : MonoBehaviour
     }
 
     //由Buscontrol脚本控制，更新等待时间ui
-    public void update_waiting_time_ui(int time)
+    public void update_waiting_time_ui(float time)
     {
-        if (time == 0)
+       /* if (time == 0)
         {
             waiting_time_text.text = "< 1";
         }
         else
-        {
+        {*/
             waiting_time_text.text = time.ToString();
-        }
+      //  }
     }
 }

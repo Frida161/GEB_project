@@ -70,6 +70,8 @@
     <Compile Include="Assets\Scripts\change_station.cs" />
     <Compile Include="Assets\Scripts\line_test.cs" />
     <Compile Include="Assets\Scripts\line_test2.cs" />
+    <Compile Include="Assets\Scripts\vector3d\Vector2d.cs" />
+    <Compile Include="Assets\Scripts\vector3d\Vector3d.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\test_script\PitchZoom.cs" />
     <Compile Include="Assets\test_script\Useless\LINE_1.cs" />
