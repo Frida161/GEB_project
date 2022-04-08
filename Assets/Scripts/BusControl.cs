@@ -211,9 +211,8 @@ public class BusControl : MonoBehaviour
             {
                 update_all_bus_info += "(->lower) ";
             }
-           // if (waiting_time == 0) update_all_bus_info +=  "<1 min ";
-           // else
-            update_all_bus_info += waiting_time.ToString() + "min ";
+            if (waiting_time < 1) update_all_bus_info +=  "<1 min ";
+            else update_all_bus_info += waiting_time.ToString() + "min ";
             update_all_bus_info += All_bus_seat_number[bus_number].ToString() + "seats" + "\n";
         }
         return update_all_bus_info;

@@ -358,13 +358,13 @@ public class line_test : MonoBehaviour
     //由Buscontrol脚本控制，更新等待时间ui
     public void update_waiting_time_ui(float time)
     {
-       /* if (time == 0)
+        if (time < 1)
         {
             waiting_time_text.text = "< 1";
         }
         else
-        {*/
+        {
             waiting_time_text.text = time.ToString();
-      //  }
+        }
     }
 }
