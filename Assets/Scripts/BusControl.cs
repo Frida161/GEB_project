@@ -354,9 +354,9 @@ public class BusControl : MonoBehaviour
     //pass the test, 计算这个点在这条线的几分之几处,返回距离靠左边的点的几分之几
     private float calculate_partition(double x, double y, int line_number)
     {
-        return (float)((latitude[line_number] - x) / (latitude[line_number] - latitude[line_number + 1]));
+       // return (float)((latitude[line_number] - x) / (latitude[line_number] - latitude[line_number + 1]));
         //点在线上
-        if (x == latitude[line_number])
+      /*  if (x == latitude[line_number])
         {
             return (float)((latitude[line_number] - x) / (latitude[line_number] - latitude[line_number + 1]));
         }
@@ -364,7 +364,7 @@ public class BusControl : MonoBehaviour
         if (slope[line_number] == 0)
         {
             return Mathf.Abs((float)(y - y_axis[line_number]));
-        }
+        }*/
         //两条线不完全平行
         double point_line_slope = -1 / slope[line_number];
         double b = -point_line_slope * x + y;
@@ -379,9 +379,9 @@ public class BusControl : MonoBehaviour
 
     private float calculate_partition_2(double x, double y, int line_number)
     {
-        return (float)((latitude_2[line_number] - x) / (latitude_2[line_number] - latitude_2[line_number + 1])); 
+       // return (float)((latitude_2[line_number] - x) / (latitude_2[line_number] - latitude_2[line_number + 1])); 
         //点在线上
-        if (x == latitude_2[line_number])
+       /* if (x == latitude_2[line_number])
         {
             return (float)((latitude_2[line_number] - x) / (latitude_2[line_number] - latitude_2[line_number + 1]));
         }
@@ -389,7 +389,7 @@ public class BusControl : MonoBehaviour
         if (slope_2[line_number] == 0)
         {
             return Mathf.Abs((float)(y - y_axis_2[line_number]));
-        }
+        }*/
         //两条线不完全平行
         double point_line_slope = -1 / slope_2[line_number];
         double b = -point_line_slope * x + y;
