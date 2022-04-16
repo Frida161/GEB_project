@@ -23,6 +23,17 @@ public struct BusInfo
 
 public class BusSimulator : MonoBehaviour
 {
+    /*
+     * This class serves as the brain of the bus simulator
+     * It will decide when to set off the bus
+     * and collect bus information from each bus
+     * object.
+     * So, this class is just like a centural server that
+     * managing all datas from the bus instances.
+     * 
+     */
+
+    //The nodes for bus line 1
     public static List<Vector2d> Line1 = new List<Vector2d>
     {
         new Vector2d(114.207266f, 22.696781f), //教职工宿舍
@@ -37,6 +48,7 @@ public class BusSimulator : MonoBehaviour
         new Vector2d(114.219380f, 22.6965760f), //图书馆
     };
 
+    //The nodes for bus line 2
     public static List<Vector2d> Line2 = new List<Vector2d>
     {
         new Vector2d(114.207266f, 22.696781f), //教职工宿舍
@@ -53,29 +65,23 @@ public class BusSimulator : MonoBehaviour
 
     public static List<Vector2d>[] Lines = new List<Vector2d>[2] { Line1, Line2 };
 
-    public static Dictionary<string, int> BusStops = new Dictionary<string, int>
-    {
-        {"教职工宿舍", 0},
-        {"书院站", 2},
-        {"体育馆", 4},
-        {"启动区", 5},
-        {"学活", 8},
-        {"图书馆", 9},
-        {"TD", 8},
-        {"TB", 9},
-    };
-
+    //The nodes which are bus stops
     public static HashSet<int> Stops = new HashSet<int> { 0, 2, 4, 5, 8, 9 };
     public static BusSimulator singleton;
 
+    //Bus prefab and object container
     public GameObject BusPrefab;
     public List<Bus> BusList;
 
+    //Parking lot
     public Queue<Bus> ParkingLotUpper;
     public Queue<Bus> ParkingLotTB;
     public Queue<Bus> ParkingLotLib;
 
+    //The line of the next bus set from upper campus
     private int UpperLine = 0;
+
+    //Set off bus cooldown
     private float UpperCooldown = 0f;
     private float LibCooldown = 60f;
     private float TBCooldown = 0f;
@@ -91,7 +97,7 @@ public class BusSimulator : MonoBehaviour
 
     private void Start()
     {
-        //Init Upper
+        //Init Upper parkinglot
         for (int i = 0; i < 4; i++)
         {
             Bus bus = Instantiate(BusPrefab).GetComponent<Bus>();
@@ -100,7 +106,7 @@ public class BusSimulator : MonoBehaviour
             ParkingLotUpper.Enqueue(bus);
         }
 
-        //Init TB
+        //Init TB parkinglot
         for (int i = 4; i < 6; i++)
         {
             Bus bus = Instantiate(BusPrefab).GetComponent<Bus>();
@@ -109,7 +115,7 @@ public class BusSimulator : MonoBehaviour
             ParkingLotTB.Enqueue(bus);
         }
 
-        //Init Lib
+        //Init Lib parkinglot
         Bus b = Instantiate(BusPrefab).GetComponent<Bus>();
         b.Initialize(Line1[9], 6, 0, -1);
         BusList.Add(b);
@@ -123,6 +129,7 @@ public class BusSimulator : MonoBehaviour
         TBCooldown -= Time.deltaTime;
         LibCooldown -= Time.deltaTime;
 
+        //If the parking lot has bus and cooldown reaches 0, set off a bus
         if (UpperCooldown <= 0f && ParkingLotUpper.Count > 0)
         {
             UpperCooldown = 60f;
@@ -143,6 +150,12 @@ public class BusSimulator : MonoBehaviour
         }
     }
 
+    /* 
+     * An API used to simulate the behavior that a client
+     * want to request the bus information from the server
+     * and server sends back a serilized data (like in json format)
+     * back to the client
+     */
     public List<BusInfo> GetInfo()
     {
         int l = BusList.Count;
