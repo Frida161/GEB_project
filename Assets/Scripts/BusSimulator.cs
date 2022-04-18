@@ -29,7 +29,7 @@ public class BusSimulator : MonoBehaviour
      * and collect bus information from each bus
      * object.
      * So, this class is just like a centural server that
-     * managing all datas from the bus instances.
+     * managing all data from the bus instances.
      * 
      */
 
@@ -110,14 +110,14 @@ public class BusSimulator : MonoBehaviour
         for (int i = 4; i < 6; i++)
         {
             Bus bus = Instantiate(BusPrefab).GetComponent<Bus>();
-            bus.Initialize(Line2[9], i, 1, -1);
+            bus.Initialize(Line1[9], i, 0, -1);
             BusList.Add(bus);
             ParkingLotTB.Enqueue(bus);
         }
 
         //Init Lib parkinglot
         Bus b = Instantiate(BusPrefab).GetComponent<Bus>();
-        b.Initialize(Line1[9], 6, 0, -1);
+        b.Initialize(Line2[9], 6, 1, -1);
         BusList.Add(b);
         ParkingLotLib.Enqueue(b);
 
@@ -140,13 +140,13 @@ public class BusSimulator : MonoBehaviour
         if (TBCooldown <= 0f && ParkingLotTB.Count > 0)
         {
             TBCooldown = 120f;
-            ParkingLotTB.Dequeue().SetBus(1);
+            ParkingLotTB.Dequeue().SetBus(0);
         }
 
         if (LibCooldown <= 0f && ParkingLotLib.Count > 0)
         {
             LibCooldown = 120f;
-            ParkingLotLib.Dequeue().SetBus(0);
+            ParkingLotLib.Dequeue().SetBus(1);
         }
     }
 
@@ -165,6 +165,75 @@ public class BusSimulator : MonoBehaviour
             r.Add(new BusInfo(BusList[i]));
         }
         return r;
+    }
+
+    //Get estimated arriving time for a station
+    public Dictionary<int,float> GetEstArriveTime(int line, int station)
+    {
+        Dictionary<int, float> result = new Dictionary<int, float>();
+
+        if (!Stops.Contains(station)) return result;
+
+        int goUpper = 10;
+        int goLower = -1;
+        int upperBus = -1;
+        int lowerBus = -1;
+        float timeL = -1f;
+        float timeU = -1f;
+
+
+        //Find nearest bus
+        foreach (Bus b in BusList)
+        {
+            if (station <= 5 || b.line == line)
+            {
+                if (b.dir == 1 && b.status < station && b.status > goLower)
+                {
+                    goLower = b.status;
+                    lowerBus = b.ID;
+                }
+                if (b.dir == -1 && b.status > station && b.status < goUpper)
+                {
+                    goUpper = b.status;
+                    upperBus = b.ID;
+                }
+            }
+        }
+        Debug.Log(lowerBus);
+        Debug.Log(upperBus);
+
+        double distance = 0;
+        //Est time for goLower
+        if (lowerBus != -1)
+        {
+            timeL = 0f;
+            int l = BusList[lowerBus].line;
+            distance = (Lines[l][goLower + 1] - BusList[lowerBus].location).magnitude;
+            for (int i = goLower + 1; i < station; i++)
+            {
+                distance += (Lines[l][i + 1] - Lines[l][i]).magnitude;
+                if (Stops.Contains(i)) timeL += 10;
+            }
+            timeL += (float)(distance / 0.0002);
+        }
+
+        //Est time for goUpper
+        if (upperBus != -1)
+        {
+            timeU = 0f;
+            int l = BusList[upperBus].line;
+            distance = (Lines[l][goUpper - 1] - BusList[upperBus].location).magnitude;
+            for (int i = goUpper - 1; i > station; i--)
+            {
+                distance += (Lines[l][i - 1] - Lines[l][i]).magnitude;
+                if (Stops.Contains(i)) timeU += 10;
+            }
+            timeU += (float)(distance / 0.0002);
+        }
+
+        result.Add(0, timeL);
+        result.Add(1, timeU);
+        return result;
     }
 
 }
