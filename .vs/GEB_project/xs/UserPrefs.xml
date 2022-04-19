@@ -1,15 +1,17 @@
 ﻿<Properties StartupConfiguration="{C3D4F516-4D05-40AF-E348-70AD50CAACCA}|">
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/change_station.cs">
     <Files>
-      <File FileName="Assets/Scripts/line_test2.cs" Line="171" Column="1" />
-      <File FileName="Assets/Scripts/BusControl.cs" Line="83" Column="101" />
-      <File FileName="Assets/Scripts/line_test.cs" Line="180" Column="1" />
-      <File FileName="Assets/Scripts/change_station.cs" Line="8" Column="24" />
+      <File FileName="Assets/Scripts/BusSimulator.cs" Line="235" Column="30" />
+      <File FileName="Assets/Scripts/BusControl.cs" Line="262" Column="39" />
+      <File FileName="Assets/Scripts/line_test2.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/line_test.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Bus.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/change_station.cs" Line="14" Column="34" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="13c9b408-0878-49e1-804a-f8e9cddb0201" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="c73c6ac3-8373-4d99-8803-f2e02dddf75c" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
