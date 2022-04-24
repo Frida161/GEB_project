@@ -586,6 +586,7 @@ MonoBehaviour:
   current_station: 2
   station_name: College Station
   station_text: {fileID: 1342884890}
+  line_number: 0
 --- !u!114 &668203036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -995,6 +996,7 @@ MonoBehaviour:
   current_station: 4
   station_name: Start-up zone
   station_text: {fileID: 1342884890}
+  line_number: 0
 --- !u!1 &1068032311
 GameObject:
   m_ObjectHideFlags: 0
@@ -1049,6 +1051,7 @@ MonoBehaviour:
   current_station: 5
   station_name: Start-up Zone
   station_text: {fileID: 1342884890}
+  line_number: 0
 --- !u!114 &1068032314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1278,6 +1281,7 @@ MonoBehaviour:
   current_station: 8
   station_name: Student Center
   station_text: {fileID: 1342884890}
+  line_number: 1
 --- !u!114 &1171201011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1570,6 +1574,7 @@ MonoBehaviour:
   current_station: 9
   station_name: TB
   station_text: {fileID: 1342884890}
+  line_number: 2
 --- !u!114 &1393191599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2028,6 +2033,7 @@ MonoBehaviour:
   current_station: 4
   station_name: GYM
   station_text: {fileID: 1342884890}
+  line_number: 0
 --- !u!114 &1494339504
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2685,6 +2691,7 @@ MonoBehaviour:
   current_station: 8
   station_name: Library
   station_text: {fileID: 1342884890}
+  line_number: 0
 --- !u!1 &1846087467
 GameObject:
   m_ObjectHideFlags: 0
@@ -2813,6 +2820,7 @@ MonoBehaviour:
   current_station: 9
   station_name: Library
   station_text: {fileID: 1342884890}
+  line_number: 1
 --- !u!114 &1867865846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3039,6 +3047,7 @@ MonoBehaviour:
   current_station: 1
   station_name: College
   station_text: {fileID: 1342884890}
+  line_number: 0
 --- !u!1 &1942794270
 GameObject:
   m_ObjectHideFlags: 0
@@ -3211,6 +3220,7 @@ MonoBehaviour:
   current_station: 7
   station_name: TB
   station_text: {fileID: 1342884890}
+  line_number: 0
 --- !u!224 &1981898174 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4977461806560229114, guid: d431bbbbda6db403eb6e97fbddaf39a2,
@@ -3271,6 +3281,7 @@ MonoBehaviour:
   current_station: 0
   station_name: ' Faculty Residence Building'
   station_text: {fileID: 1342884890}
+  line_number: 0
 --- !u!114 &1989156304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3422,6 +3433,7 @@ MonoBehaviour:
   current_station: 8
   station_name: TD
   station_text: {fileID: 1342884890}
+  line_number: 2
 --- !u!114 &2045287388
 MonoBehaviour:
   m_ObjectHideFlags: 0

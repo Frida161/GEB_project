@@ -10,44 +10,45 @@ public class BusControl : MonoBehaviour
 {
 
     private GameObject[] Bus = new GameObject[10];
-    public GameObject[] Two_kind_bus; //第一种1号线，第二种2号线
-    public Transform[] Two_bus_waiting_station;//第一个上园站点，第二种下园站点
+    public GameObject[] Two_kind_bus; //第一种1号线，第二种2号线,The first type is line 1, the second type is line 2
+    public Transform[] Two_bus_waiting_station;//第一个上园站点，第二种下园站点 The first upper campus stops, the second lower campus stops
     public Text bus_info_text;
     public GameObject canvas;
 
     //顺序为教职工宿舍，教职工和书院的十字路口（ 114.208618f, 22.697022f, mapping地图上没有，暂时取消），书院站，拐点，体育馆，启动区(缺少)，1,2号线分岔点，拐点3（到TB的拐点），学活，图书馆(目前一共9段)
-    private double[] latitude = { 114.207266f, 114.209234f, 114.209261f, 114.216622f, 114.217826f, 114.218024f,114.217341f, 114.218131f, 114.219380f, };//经纬度第一个值
-    private double[] longtitude = { 22.696781f, 22.69631f, 22.692097f, 22.691858f, 22.692925f, 22.693034f, 22.693813f, 22.695234f, 22.696576f };//经纬度第二个值
+    private double[] latitude = { 114.207266f, 114.209234f, 114.209261f, 114.216622f, 114.217826f, 114.218024f,114.217341f, 114.218131f, 114.219380f, };//经纬度第一个值, the first value of GPS of 1t_line
+    private double[] longtitude = { 22.696781f, 22.69631f, 22.692097f, 22.691858f, 22.692925f, 22.693034f, 22.693813f, 22.695234f, 22.696576f };//经纬度第二个值, the second value of GPS of 1s_line
 
-    private double[] latitude_2 = { 114.207266f, 114.209234f, 114.209261f, 114.216622f, 114.217826f, 114.218024f,114.218455f, 114.220224f, 114.221163f };//经纬度第一个值
-    private double[] longtitude_2 = { 22.696781f, 22.69631f, 22.692097f, 22.691858f, 22.692925f, 22.693034f, 22.692742f, 22.694088f, 22.69508f };//经纬度第二个值
+    private double[] latitude_2 = { 114.207266f, 114.209234f, 114.209261f, 114.216622f, 114.217826f, 114.218024f,114.218455f, 114.220224f, 114.221163f };//经纬度第一个值, the first value of GPS of 2nd_line
+    private double[] longtitude_2 = { 22.696781f, 22.69631f, 22.692097f, 22.691858f, 22.692925f, 22.693034f, 22.692742f, 22.694088f, 22.69508f };//经纬度第二个值, the second value of GPS of 2nd_line
 
 
-    private double[] slope = new double[10];//每一条线段的斜率,
-    private double[] y_axis = new double[10];//每一条线段的截距
+    private double[] slope = new double[10];//每一条线段的斜率, slope of every line
+    private double[] y_axis = new double[10];//每一条线段的截距, y_axis of every line
 
-    private double[] slope_2 = new double[10];//每一条线段的斜率,
-    private double[] y_axis_2 = new double[10];//每一条线段的截距
+    private double[] slope_2 = new double[10];//每一条线段的斜率, slope of every line
+    private double[] y_axis_2 = new double[10];//每一条线段的截距, y_axis of every line
 
-    private float[] line_running_time = { 1f, 2f, 3.5f, 1f, 0.5f, 0.5f, 0.5f, 1f };//每一段路程的行驶时间,例如教职工宿舍和书院行驶时间为1min,单程9分钟
+    private float[] line_running_time = { 1f, 2f, 3.5f, 1f, 0.5f, 0.5f, 0.5f, 1f };//每一段路程的行驶时间,例如教职工宿舍和书院行驶时间为1min,单程9分钟 waiting time of every segment
     private float single_route_time = 10f;
 
-    //记录每一辆车的上一站
-    //在上园的停车场的车，初始值为 Last_BusStop = 0， last_bus_ori = 0
-    //在下园的停车场的车，初始值为 Last_BusStop = 6， last_bus_ori = 1
+    //记录每一辆车的上一站,Record the last stop of each car
+    //在上园的停车场的车，初始值为 Last_BusStop = 0， last_bus_ori = 0,The bus in the parking lot in upper campus
+    //在下园的停车场的车，初始值为 Last_BusStop = 6， last_bus_ori = 1,The bus in the parking lot in lower campus
     private int[] All_Last_BusStop = {0,0,0,0,0,0,0,0,0,0,0,0};
     private int[] All_Last_bus_ori = {0,0,0,0,0,0,0,0,0,0,0,0};
-    private int current_waiting_step = 2;//当前人所在的车站
+    private int current_waiting_step = 2;//当前人所在的车站,The stop where the current person is
+    private int current_waiting_line_display = 0;//0都显示
     private int[] All_bus_route_number = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}; //1->1号线，2->2号线
 
     private float[] All_bus_waiting_time = { 0,0,0,0,0,0,0,0,0,0};
-    private int[] All_bus_seat_number = { 20, 20, 20, 20, 20, 20, 20, 20, 20, 20 };//所有车初始有30个座位
-    private int[] All_current_bus_oir = { 0,0,0,0,0,0,0,0,0,0,0,0,0};      //所有车的运行方向
-    private int[] All_bus_line_number = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };//所有车的路线号码，1号线或者2号线
+    private int[] All_bus_seat_number = { 20, 20, 20, 20, 20, 20, 20, 20, 20, 20 };//所有车初始有30个座位,All bus initially have 30 seats
+    private int[] All_current_bus_oir = { 0,0,0,0,0,0,0,0,0,0,0,0,0};      //所有车的运行方向,The direction of all the bus
+    private int[] All_bus_line_number = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };//所有车的路线号码，1号线或者2号线,Route numbers of all bus, line 1 or 2
     private int[] All_bus_compareStop = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
     private int[] recorded_line_number = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }; //所有车的路线号码，记录上一次的（发车会变化
 
-    private float[] last_waiting_time = { 0, 0, 0, 0 };//上一次等待时间，用于停车
+    private float[] last_waiting_time = { 0, 0, 0, 0 };//上一次等待时间，用于停车,Last waiting time, used for parking
     void Start()
     {
         calculate_slope_and_y_axis();
@@ -58,7 +59,10 @@ public class BusControl : MonoBehaviour
     {
         current_waiting_step = number;
     }
-
+    public void change_current_display_line(int line_number)
+    {
+        current_waiting_line_display = line_number;
+    }
     private void FixedUpdate()
     {
         test();
@@ -66,7 +70,7 @@ public class BusControl : MonoBehaviour
 
     #region 模拟运行
 
-    //所有车的初始位置生成
+    //所有车的初始位置生成,The initial positions of all vehicles are generated
     public void generate_initial_position()
     {
         foreach (BusInfo bus_info in BusSimulator.singleton.GetInfo())
@@ -89,7 +93,7 @@ public class BusControl : MonoBehaviour
            // Debug.Log("status:" + status);
             if (status != -1)
             {
-                //生成的1号线车在上园，即将往下园开
+                //生成的1号线车在上园，即将往下园开, The generated line 1 bus is on the upper campus and is about to leave on the lower campus
                 if (direction == 0 && line == 1)
                 {
                     Bus[bus_id] = Instantiate(Two_kind_bus[0], canvas.transform);
@@ -98,7 +102,7 @@ public class BusControl : MonoBehaviour
                     All_Last_bus_ori[bus_id] = direction;
 
                 }
-                //生成的2号线车在下园园，即将往上园开
+                //生成的2号线车在下园园，即将往上园开,The generated line 2 bus is on the lower campus and is about to leave on the upper campus
                 else if (direction == 1 && line == 2)
                 {
                     Bus[bus_id] = Instantiate(Two_kind_bus[1], canvas.transform);
@@ -106,18 +110,18 @@ public class BusControl : MonoBehaviour
                     All_Last_BusStop[bus_id] = 6;
                     All_Last_bus_ori[bus_id] = direction;
                 }
-                //生成的1号线车在下园园，即将往上园开
-                else if (direction == 1 && line == 2)
+                //生成的2号线车在上园园，即将往上园开,The generated line 1 bus is on the lower campus and is about to leave on the upper campus
+                else if (direction == 0 && line == 2)
                 {
-                    Bus[bus_id] = Instantiate(Two_kind_bus[0], canvas.transform);
+                    Bus[bus_id] = Instantiate(Two_kind_bus[1], canvas.transform);
                     Bus[bus_id].transform.localPosition = new Vector3(425, -147.2f, 0);
                     All_Last_BusStop[bus_id] = 6;
                     All_Last_bus_ori[bus_id] = direction;
                 }
-                //生成的2号线车在上园，即将往下园开
+                //生成的2号线车在上园，即将往下园开,The generated line 2 bus is on the upper campus and is about to leave on the lower campus
                 else
                 {
-                    Bus[bus_id] = Instantiate(Two_kind_bus[1], canvas.transform);
+                    Bus[bus_id] = Instantiate(Two_kind_bus[0], canvas.transform);
                     Bus[bus_id].transform.localPosition = new Vector3(-579, 893, 9);
                     All_Last_BusStop[bus_id] = 0;
                     All_Last_bus_ori[bus_id] = direction;
@@ -131,7 +135,7 @@ public class BusControl : MonoBehaviour
 
     }
 
-    //接收GPS并且运行
+    //接收GPS并且运行, receive GPS and run
     public void test()
     {       
             foreach (BusInfo bus_info in BusSimulator.singleton.GetInfo())
@@ -151,7 +155,7 @@ public class BusControl : MonoBehaviour
              if (status == 8 && direction == 0) status = 7;
              Debug.Log("status:" + status);
 
-            //朝上园开
+            //朝上园开, to upper campus
             if (direction == 1 && status>=2)
              {
                  status = status-2;
@@ -159,26 +163,27 @@ public class BusControl : MonoBehaviour
              if (status == 8 && direction == 1) status = 7;
              if (status == 9 && direction == 1) status = 7;
 
-            //生成的车在上园，即将往下园开
+            //生成的车在上园，即将往下园开,The generated car is in the upper campus, about to go down to the lower campus
             if (direction == 0)
                 {
                     All_Last_BusStop[bus_id] = 0;
                     All_Last_bus_ori[bus_id] = direction;
 
                 }
-                //生成的车在上园，即将往上园开
-                else
-                {
+            //生成的车在下园，即将往上园开,The car generated is in the lower capmus, is going to drive up to the upper campus
+            else
+            {
                     All_Last_BusStop[bus_id] = 7;
                     All_Last_bus_ori[bus_id] = direction;
                 }
                 if (status == -1) Destroy(Bus[bus_id]);
-                //上一次记录的车和这次收到的车不一样，代表上下园换车发车
-                else {
+            //上一次记录的车和这次收到的车不一样，代表上下园换车发车,The car recorded last time is different from the car received this time, which means that the car will be transferred
+            else
+            {
                 if (Bus[bus_id] == null || recorded_line_number[bus_id]!=line)
                 {
                     Destroy(Bus[bus_id]);
-                    //生成的1号线车在下园园，即将往下园开
+                    //生成的1号线车在上园，即将往下园开,The generated line 1 bus is on the upper campus and is about to leave on the lower campus
                     if (direction == 0 && line == 1)
                     {
                         Bus[bus_id] = Instantiate(Two_kind_bus[0], canvas.transform);
@@ -187,7 +192,7 @@ public class BusControl : MonoBehaviour
                         All_Last_bus_ori[bus_id] = direction;
 
                     }
-                    //生成的2号线车在下园园，即将往上园开
+                    //生成的2号线车在下园，即将往上园开,The generated line 2 bus is on the lower campus and is about to leave on the upper campus
                     else if (direction == 1 && line == 2)
                     {
                         Bus[bus_id] = Instantiate(Two_kind_bus[1], canvas.transform);
@@ -195,18 +200,18 @@ public class BusControl : MonoBehaviour
                         All_Last_BusStop[bus_id] = 7;
                         All_Last_bus_ori[bus_id] = direction;
                     }
-                    //生成的1号线车在下园园，即将往上园开
-                    else if (direction == 1 && line == 2)
+                    //生成的1号线车在下园，即将往上园开,The generated line 1 bus is on the lower campus and is about to leave on the upper campus
+                    else if (direction == 0 && line == 2)
                     {
-                        Bus[bus_id] = Instantiate(Two_kind_bus[0], canvas.transform);
+                        Bus[bus_id] = Instantiate(Two_kind_bus[1], canvas.transform);
                         Bus[bus_id].transform.localPosition = new Vector3(425, -147.2f, 0);
                         All_Last_BusStop[bus_id] = 7;
                         All_Last_bus_ori[bus_id] = direction;
                     }
-                    //生成的2号线车在上园，即将往下园开
+                    //生成的2号线车在上园，即将往下园开,The generated line 2 bus is on the upper campus and is about to leave on the lower campus
                     else
                     {
-                        Bus[bus_id] = Instantiate(Two_kind_bus[1], canvas.transform);
+                        Bus[bus_id] = Instantiate(Two_kind_bus[0], canvas.transform);
                         Bus[bus_id].transform.localPosition = new Vector3(-579, 893, 9);
                         All_Last_BusStop[bus_id] = 0;
                         All_Last_bus_ori[bus_id] = direction;
@@ -219,11 +224,11 @@ public class BusControl : MonoBehaviour
             }
 
             All_bus_line_number[bus_id] = status;
-            //更新这个车的方向，用来显示
+            //更新这个车的方向，用来显示,Update the orientation of this vehicle to display
             All_current_bus_oir[bus_id] = direction;
             }
 
-        //更新总榜ui然后字典清空
+        //更新总榜ui然后字典清空,Update the total list UI and then clear the dictionary
         update_all_UI();
 
 
@@ -241,47 +246,98 @@ public class BusControl : MonoBehaviour
 
     private string return_bus_info()
     {
-        //升序输出时间
         string update_all_bus_info = "Est arriving time:\n";
 
         Dictionary<int, float> result_line_1, result_line_2;
-        result_line_1 = BusSimulator.singleton.GetEstArriveTime(0, current_waiting_step); //1号线的最近结果
-        result_line_2 = BusSimulator.singleton.GetEstArriveTime(1, current_waiting_step); //2号线的最近结果
+        result_line_1 = BusSimulator.singleton.GetEstArriveTime(0, current_waiting_step); //1号线的最近结果，The shortest waiting time on line 1
+        result_line_2 = BusSimulator.singleton.GetEstArriveTime(1, current_waiting_step); //2号线的最近结果, The shortest waiting time on line 2
 
-        if (current_waiting_step != 0)
+        //1.2号线都显示区段,show both Line 1 and 2
+        if (current_waiting_line_display == 0)
         {
-            if (result_line_1[1] == -1 && result_line_2[1] == -1)
+            if (current_waiting_step != 0)
+            {
+                if (result_line_1[1] == -1 && result_line_2[1] == -1)
+                {
+                    update_all_bus_info += "To upper campus: " + "wait for bus departure.\n";
+                }
+                else
+                {
+                    if (result_line_1[1] == -1) update_all_bus_info += "To upper campus:" + Mathf.Round(result_line_2[1] * 5 / 60 * 10) / 10 + "min\n";
+                    else if (result_line_2[1] == -1) update_all_bus_info += "To upper campus:" + Mathf.Round(result_line_1[1] * 5 / 60 * 10) / 10 + "min\n";
+                    else if (result_line_1[1] < result_line_2[1]) update_all_bus_info += "To upper campus:" + Mathf.Round(result_line_1[1] * 5 / 60 * 10) / 10 + "min\n";
+                    else update_all_bus_info += "To upper campus:" + Mathf.Round(result_line_2[1] * 5 / 60 * 10) / 10 + "min\n";
+                }
+            }
+            if (current_waiting_step != 9)
+            {
+                if (result_line_1[0] == -1 && result_line_2[0] == -1)
+                {
+                    update_all_bus_info += "To lower campus: " + "wait for bus departure.\n";
+                }
+                else
+                {
+                    if (result_line_1[0] == -1) update_all_bus_info += "To lower campus:" + Mathf.Round(result_line_2[0] * 5 / 60 * 10) / 10 + "min\n";
+                    else if (result_line_2[0] == -1) update_all_bus_info += "To lower campus:" + Mathf.Round(result_line_1[0] * 5 / 60 * 10) / 10 + "min\n";
+                    else if (result_line_1[0] < result_line_2[0]) update_all_bus_info += "To lower campus:" + Mathf.Round(result_line_1[0] * 5 / 60 * 10) / 10 + "min\n";
+                    else update_all_bus_info += "To lower campus:" + Mathf.Round(result_line_2[0] * 5 / 60 * 10) / 10 + "min\n";
+                }
+            }
+        }
+
+        //1号线显示区段(学活或者图书馆), show only Line 1
+        if (current_waiting_line_display == 1)
+        {
+            //TD或者图书馆，只有往上园方向的车,TD or library, only to upper campus
+            if (result_line_1[1] == -1)
             {
                 update_all_bus_info += "To upper campus: " + "wait for bus departure.\n";
             }
             else
             {
-                if (result_line_1[1] == -1) update_all_bus_info += "To upper campus:" + Mathf.Round(result_line_2[1] * 5 / 60 * 10) / 10 + "min\n";
-                else if (result_line_2[1] == -1) update_all_bus_info += "To upper campus:" + Mathf.Round(result_line_1[1] * 5 / 60 * 10) / 10 + "min\n";
-                else if (result_line_1[1] < result_line_2[1]) update_all_bus_info += "To upper campus:" + Mathf.Round(result_line_1[1] * 5 / 60 * 10) / 10 + "min\n";
-                else update_all_bus_info += "To upper campus:" + Mathf.Round(result_line_2[1] * 5 / 60 * 10) / 10 + "min\n";
+                update_all_bus_info += "To upper campus:" + Mathf.Round(result_line_1[1] * 5 / 60 * 10) / 10 + "min\n";
             }
-        }
 
-        if (current_waiting_step != 9)
-        {
-            if (result_line_1[0] == -1 && result_line_2[0] == -1)
+            if (current_waiting_step != 9) { 
+                if (result_line_1[0] == -1)
             {
                 update_all_bus_info += "To lower campus: " + "wait for bus departure.\n";
             }
             else
             {
-                if (result_line_1[0] == -1) update_all_bus_info += "To lower campus:" + Mathf.Round(result_line_2[0] * 5 / 60 * 10) / 10 + "min\n";
-                else if (result_line_2[0] == -1) update_all_bus_info += "To lower campus:" + Mathf.Round(result_line_1[0] * 5 / 60 * 10) / 10 + "min\n";
-                else if (result_line_1[0] < result_line_2[0]) update_all_bus_info += "To lower campus:" + Mathf.Round(result_line_1[0] * 5 / 60 * 10) / 10 + "min\n";
-                else update_all_bus_info += "To lower campus:" + Mathf.Round(result_line_2[0] * 5 / 60 * 10) / 10 + "min\n";
+                update_all_bus_info += "To lower campus:" + Mathf.Round(result_line_1[0] * 5 / 60 * 10) / 10 + "min\n";
+            }
+            }
+            Debug.Log("wait1:" + current_waiting_line_display.ToString() + current_waiting_step.ToString());
+            Debug.Log("wait2:" + result_line_1[0] + " " + result_line_1[1]);
+            Debug.Log("wait3:" + result_line_2[0] + " " + result_line_2[1]);
+        }
+
+        //2号线显示区段, show only Line 1
+        if (current_waiting_line_display == 2)
+        {
+            //TD或者图书馆，只有往上园方向的车,TD or library, only to upper campus
+                if (result_line_2[1] == -1)
+                {
+                    update_all_bus_info += "To upper campus: " + "wait for bus departure.\n";
+                }
+                else
+                {
+                    update_all_bus_info += "To upper campus:" + Mathf.Round(result_line_2[1] * 5 / 60 * 10) / 10 + "min\n";
+                }
+            if (current_waiting_step != 9)
+            {
+                if (result_line_2[0] == -1)
+                {
+                    update_all_bus_info += "To lower campus: " + "wait for bus departure.\n";
+                }
+                else
+                {
+                    update_all_bus_info += "To lower campus:" + Mathf.Round(result_line_2[0] * 5 / 60 * 10) / 10 + "min\n";
+                }
             }
         }
 
-
-
-
-        //TD或者图书馆，只有往上园方向的车
 
         return update_all_bus_info;
     }
@@ -316,23 +372,23 @@ public class BusControl : MonoBehaviour
         if (direction == 0 || direction == 1)
         {
             int limit_stop = latitude.Length - 2;
-            if (direction == 0)//往下园开
+            if (direction == 0)//往下园开, to lower campus
             {
                 if ((pass_stop + 1) <= latitude.Length - 2) limit_stop = pass_stop + 1;
             }
-            else //往上园开
+            else //往上园开, to upper campus
             {
                 limit_stop = 0;
                 if ((pass_stop - 1) >= 0) limit_stop = pass_stop - 1;
             }
 
-            //计算是否在该路径上
+            //计算是否在该路径上, Calculates whether it is on the path
             int i = pass_stop;
             if (x == latitude[pass_stop])
             {
                 return pass_stop;
             }
-            //两条线完全平行，一般不太可能
+            //两条线完全平行，一般不太可能,Two lines that are perfectly parallel (usually impossible)
             if (slope[pass_stop] == 0)
             {
                 return pass_stop;
@@ -348,14 +404,14 @@ public class BusControl : MonoBehaviour
             else return limit_stop;
 
         }
-        //到了图书馆附近转弯
+        //到了图书馆附近转弯,Turn when at the library stop
         else if (direction == 2)
         {
             //  return 1;
             return latitude.Length - 2;
 
         }
-        //到了教职工宿舍附近转弯
+        //到了教职工宿舍附近转弯,Turn when at the staff building stop
         else
         {
             return 0;
@@ -368,23 +424,23 @@ public class BusControl : MonoBehaviour
         if (direction == 0 || direction == 1)
         {
             int limit_stop = latitude.Length - 2;
-            if (direction == 0)//往下园开
+            if (direction == 0)//往下园开, to upper campus
             {
                 if ((pass_stop + 1) <= latitude.Length - 2) limit_stop = pass_stop + 1;
             }
-            else //往上园开
+            else //往上园开, to lower campus
             {
                 limit_stop = 0;
                 if ((pass_stop - 1) >= 0) limit_stop = pass_stop - 1;
             }
 
-            //计算是否在该路径上
+            //计算是否在该路径上,Calculates whether it is on the path
             int i = pass_stop;
             if (x == latitude_2[pass_stop])
             {
                 return pass_stop;
             }
-            //两条线完全平行，一般不太可能
+            //两条线完全平行，一般不太可能,Two lines that are perfectly parallel (usually impossible)
             if (slope_2[pass_stop] == 0)
             {
                 return pass_stop;
@@ -400,14 +456,14 @@ public class BusControl : MonoBehaviour
             else return limit_stop;
 
         }
-        //到了图书馆附近转弯
+        //到了图书馆附近转弯,Turn when at the library stop
         else if (direction == 2)
         {
             //  return 1;
             return latitude.Length - 2;
 
         }
-        //到了教职工宿舍附近转弯
+        //到了教职工宿舍附近转弯,Turn when at the staff building stop
         else
         {
             return 0;
@@ -416,7 +472,7 @@ public class BusControl : MonoBehaviour
 
     #endregion
 
-    //pass the test, 计算这个点在这条线的几分之几处,返回距离靠左边的点的几分之几,计算1号线车在这一段的几分之几
+    //pass the test, 计算这个点在这条线的几分之几处,返回距离靠左边的点的几分之几,计算1号线车在这一段的几分之几,Calculate the portion line 1 bus in this segment
     private float calculate_partition(double x, double y, int line_number)
     {
         double line1 = ((latitude[line_number] - x) * (latitude[line_number] - x) + (longtitude[line_number] - y) * (longtitude[line_number] - y));
@@ -426,7 +482,7 @@ public class BusControl : MonoBehaviour
         else if (result < 0) return 0;
         else return result;
     }
-    //pass the test, 计算这个点在这条线的几分之几处,返回距离靠左边的点的几分之几,计算2号线车在这一段的几分之几
+    //pass the test, 计算这个点在这条线的几分之几处,返回距离靠左边的点的几分之几,计算2号线车在这一段的几分之几,,Calculate the portion line2 bus in this segment
     private float calculate_partition_2(double x, double y, int line_number)
     {
         Debug.Log("line_number:" + line_number);
@@ -441,7 +497,7 @@ public class BusControl : MonoBehaviour
 
 
     #region 座位和等待时间
-    //车上空余座位模拟，随机数字
+    //车上空余座位模拟，随机数字,remaining seat simulation, random number
     public int random_remain_seat()
     {
         int random_number = Random.Range(1, 30);
@@ -449,21 +505,21 @@ public class BusControl : MonoBehaviour
     }
 
 
-    //等待时间模拟,目前在等待的车站，目前车的位置，目前车的朝向
+    //等待时间模拟,目前在等待的车站，目前车的位置，目前车的朝向,parameter: Wait time simulation, current waiting station, current bus position, current bus orientation
     private float calculate_waiting_time(int current_step_number, int line_number, float partition, int current_bus_ori)
     {
 
         float total_waiting_time = 0;
-        //上园往下园开
+        //上园往下园开, to upper campus
         if (current_bus_ori == 0)
         {
             //到站
-            //下一站就到了,partition > 0.1
+            //下一站就到了,partition > 0.1, arrive at the next bus stop
             if (current_step_number == line_number + 1 && partition < 0.1)
             {
                 return 0f;
             }
-            //已经过站了要绕一圈,目前我的所处的站在公交车站前面
+            //已经过站了要绕一圈,目前我的所处的站在公交车站前面, already passed the stop
             else if (current_step_number <= line_number)
             {
                 total_waiting_time = partition * line_running_time[line_number];
@@ -478,7 +534,7 @@ public class BusControl : MonoBehaviour
                 total_waiting_time = single_route_time * 2 - (Mathf.Round(total_waiting_time * 10) / 10);
                 return total_waiting_time;
             }
-            //下一站没到，还远着
+            //下一站没到，还远着,The next stop is far away
             else
             {
                 total_waiting_time = (1 - partition) * line_running_time[line_number];
@@ -490,16 +546,16 @@ public class BusControl : MonoBehaviour
                 return total_waiting_time;
             }
         }
-        //下园往上园开
+        //下园往上园开, to lower campus
         else
         {
             //到站
-            //下一站就到了
+            //下一站就到了, arrive at the next bus stop
             if ((current_step_number == line_number && partition < 0.1))
             {
                 return 0f;
             }
-            //已经过站了要绕一圈
+            //已经过站了要绕一圈, already passed the stop
             else if (current_step_number > line_number)
             {
                 total_waiting_time = (1 - partition) * line_running_time[line_number];
@@ -512,11 +568,10 @@ public class BusControl : MonoBehaviour
                 {
                     total_waiting_time += line_running_time[i];
                 }
-                //总时长经过已经走过的距离
                 total_waiting_time = single_route_time * 2 - (Mathf.Round(total_waiting_time * 10) / 10);
                 return total_waiting_time;
             }
-            //下一站没到，还远着
+            //下一站没到，还远着,The next stop is far away
             else
             {
                 // Debug.Log("hi5:" + current_step_number + " " + line_number + " " + partition);
@@ -542,7 +597,7 @@ public class BusControl : MonoBehaviour
     #endregion
 
 
-    //经纬度，现在车的运行方向，现在学生的等待车站，目前车的序号（从0开始）
+    //经纬度，现在车的运行方向，现在学生的等待车站，目前车的序号（从0开始） parameter:Latitude and longitude, the current direction of the bus, the current student's waiting station, the current bus serial number (starting from 0)
     public void final_run_logic(double x, double y, int bus_running_oir, int current_student_wait_step, int bus_number)
     {
         if (All_bus_line_number[bus_number] == -1) return;
@@ -553,8 +608,8 @@ public class BusControl : MonoBehaviour
         else partition = calculate_partition_2(x, y, line_number);
         Debug.Log("p:"+line_number.ToString()+partition);
 
-        //改成调用相应车的运动脚本
-        float [] info = { (float)line_number, partition };
+        //改成调用相应车的运动脚本, call the corresponding vehicle's motion script
+        float[] info = { (float)line_number, partition };
         Bus[bus_number].SendMessage("Bus_move", info);
        
 
@@ -571,7 +626,7 @@ public class BusControl : MonoBehaviour
         All_Last_bus_ori[bus_number] = bus_running_oir;
 
 
-        //经过站点且不是拐点，更新座位
+        //经过站点且不是拐点，更新座位,Update your seat after a stop that is not an turning point
         int last_number = All_bus_compareStop[bus_number];
         if (last_number != line_number && last_number != 2 && last_number != 5 && last_number != 6)
         {

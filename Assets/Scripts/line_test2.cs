@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class line_test2 : MonoBehaviour
 {
+    //line 2 bus move control script
     public Transform[] map_stop; //地图上的empty object对应的坐标,顺序为教职工宿舍，教职工和书院的十字路口（ 114.208618f, 22.697022f,暂时取消），书院站，拐点，体育馆，启动区，1,2号线分岔点，拐点3（到TB的拐点），TD，TB(目前一共9段)
     public Text seat_number_text;
     public Text waiting_time_text;
@@ -26,7 +27,7 @@ public class line_test2 : MonoBehaviour
     private int total_route_step = 9;
 
 
-    //图上公交的移动
+    //图上公交的移动,The movement of the bus in the map
     public void Bus_move(float[] info)
     {
         int line_number = (int)info[0];
@@ -38,13 +39,13 @@ public class line_test2 : MonoBehaviour
     }
 
 
-    //由Buscontrol脚本控制，更新座位UI
+    //由Buscontrol脚本控制，更新座位UI,Updates the seat UI, controlled by the Buscontrol script
     public void update_seat_ui(int seat)
     {
         seat_number_text.text = seat.ToString();
     }
 
-    //由Buscontrol脚本控制，更新等待时间ui
+    //由Buscontrol脚本控制，更新等待时间ui,Updates the wait time UI, controlled by the Buscontrol script
     public void update_waiting_time_ui(float time)
     {
         if (time < 1)
