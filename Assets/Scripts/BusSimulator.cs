@@ -95,6 +95,12 @@ public class BusSimulator : MonoBehaviour
         ParkingLotLib = new Queue<Bus>();
     }
 
+    private void FixedUpdate()
+    {
+        Debug.Log("Line 1 S 8: " + GetEstArriveTime(0, 8)[1].ToString());
+        Debug.Log("Line 2 S 8: " + GetEstArriveTime(1, 8)[1].ToString());
+    }
+
     private void Start()
     {
         //Init Upper parkinglot
@@ -110,14 +116,14 @@ public class BusSimulator : MonoBehaviour
         for (int i = 4; i < 6; i++)
         {
             Bus bus = Instantiate(BusPrefab).GetComponent<Bus>();
-            bus.Initialize(Line1[9], i, 0, -1);
+            bus.Initialize(Line2[9], i, 1, -1);
             BusList.Add(bus);
             ParkingLotTB.Enqueue(bus);
         }
 
         //Init Lib parkinglot
         Bus b = Instantiate(BusPrefab).GetComponent<Bus>();
-        b.Initialize(Line2[9], 6, 1, -1);
+        b.Initialize(Line1[9], 6, 0, -1);
         BusList.Add(b);
         ParkingLotLib.Enqueue(b);
 
@@ -140,13 +146,13 @@ public class BusSimulator : MonoBehaviour
         if (TBCooldown <= 0f && ParkingLotTB.Count > 0)
         {
             TBCooldown = 120f;
-            ParkingLotTB.Dequeue().SetBus(0);
+            ParkingLotTB.Dequeue().SetBus(1);
         }
 
         if (LibCooldown <= 0f && ParkingLotLib.Count > 0)
         {
             LibCooldown = 120f;
-            ParkingLotLib.Dequeue().SetBus(1);
+            ParkingLotLib.Dequeue().SetBus(0);
         }
     }
 
@@ -199,8 +205,6 @@ public class BusSimulator : MonoBehaviour
                 }
             }
         }
-        Debug.Log(lowerBus);
-        Debug.Log(upperBus);
 
         double distance = 0;
         //Est time for goLower
